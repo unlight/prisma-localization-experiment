@@ -1,4 +1,6 @@
 import { PrismaClient } from '@prisma/client';
+import { util } from 'prettier';
+import { inspect } from 'util';
 
 const prisma = new PrismaClient({
     log: [
@@ -19,13 +21,13 @@ prisma.$on('query', (event: any) => {
 });
 
 async function main() {
-    // Get all
+    console.log('Get all');
     const feed = await prisma.post.findUnique({
         include: {
-            localization: true,
+            localizations: true,
             category: {
                 include: {
-                    localization: true,
+                    localizations: true,
                 },
             },
         },
@@ -33,21 +35,46 @@ async function main() {
             postId: 1,
         },
     });
-    console.log('feed', feed);
+    console.log(feed);
 
-    const feed2 = await prisma.post.findUnique({
+    console.log('Get on specific language');
+    const feed2 = await prisma.post.findMany({
         include: {
-            localization: true,
+            localizations: {
+                select: {
+                    // language: true,
+                    field: true,
+                    value: true,
+                },
+                where: {
+                    language: 'DE',
+                },
+            },
             category: {
                 include: {
-                    localization: true,
+                    localizations: {
+                        select: {
+                            // language: true,
+                            field: true,
+                            value: true,
+                        },
+                        where: {
+                            language: 'DE',
+                        },
+                    },
                 },
             },
         },
         where: {
-            postId: 1,
+            localizations: {
+                some: {
+                    language: { equals: 'DE' },
+                },
+            },
         },
     });
+
+    console.log(inspect(feed2, undefined, null));
 }
 
 main()

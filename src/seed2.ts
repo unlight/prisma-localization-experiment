@@ -23,19 +23,17 @@ async function main() {
     const category1 = await prisma.category.create({
         data: {
             name: 'regatta',
-            localization: {
+            localizations: {
                 create: [
                     {
                         value: 'regatta rus',
                         language: 'RU',
                         field: 'name',
-                        model: 'Category',
                     },
                     {
                         value: 'regatta ger',
                         language: 'DE',
                         field: 'name',
-                        model: 'Category',
                     },
                 ],
             },
@@ -51,32 +49,28 @@ async function main() {
             title: 'Awesome Post',
             body:
                 'underdevelopment sponsalia forthgaze unefficacious sacrosecular upness',
-            localization: {
+            localizations: {
                 create: [
                     {
                         value: 'Крутой пост',
                         language: 'RU',
                         field: 'title',
-                        model: 'Post',
                     },
                     {
                         value: 'Awessome mag',
                         language: 'DE',
                         field: 'title',
-                        model: 'Post',
                     },
                     {
                         value: 'Ru Oriskanian Ru nauseate Ru ollenite',
                         language: 'RU',
                         field: 'body',
-                        model: 'Post',
                     },
                     {
                         value:
                             'De nitrobarite De nonconnotative De cusparidine',
                         language: 'DE',
                         field: 'body',
-                        model: 'Post',
                     },
                 ],
             },

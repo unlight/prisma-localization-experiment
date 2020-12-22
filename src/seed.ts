@@ -23,7 +23,7 @@ async function main() {
     const category1 = await prisma.category.create({
         data: {
             name: 'regatta',
-            nameLocalization: {
+            nameLocalizations: {
                 create: [
                     {
                         value: 'regatta rus',
@@ -45,7 +45,7 @@ async function main() {
                 },
             },
             title: 'Awesome Post',
-            titleLocalization: {
+            titleLocalizations: {
                 create: [
                     {
                         value: 'Крутой пост',
@@ -59,7 +59,7 @@ async function main() {
             },
             body:
                 'underdevelopment sponsalia forthgaze unefficacious sacrosecular upness',
-            bodyLocalization: {
+            bodyLocalizations: {
                 create: [
                     {
                         value: 'Ru Oriskanian Ru nauseate Ru ollenite',
