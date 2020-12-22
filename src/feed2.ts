@@ -22,14 +22,32 @@ async function main() {
     // Get all
     const feed = await prisma.post.findUnique({
         include: {
-            titleLocalization: true,
-            bodyLocalization: true,
+            localization: true,
+            category: {
+                include: {
+                    localization: true,
+                },
+            },
         },
         where: {
             postId: 1,
         },
     });
     console.log('feed', feed);
+
+    const feed2 = await prisma.post.findUnique({
+        include: {
+            localization: true,
+            category: {
+                include: {
+                    localization: true,
+                },
+            },
+        },
+        where: {
+            postId: 1,
+        },
+    });
 }
 
 main()

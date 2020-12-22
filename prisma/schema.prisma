@@ -10,9 +10,8 @@ datasource db {
 model Post {
   postId    Int     @id @default(autoincrement())
   title     String
-  titleLocalization Localization[] @relation(name: "TitleLocalization")
+  localization Localization[]
   body String
-  bodyLocalization Localization[] @relation(name: "BodyLocalization")
   categoryId Int?
   category Category? @relation(fields: [categoryId], references: [categoryId])
 }
@@ -20,7 +19,7 @@ model Post {
 model Category {
   categoryId Int @id @default(autoincrement())
   name String
-  nameLocalization Localization[]
+  localization Localization[]
   posts Post[]
 }
 
@@ -28,8 +27,6 @@ model Localization {
     localizationId Int @id @default(autoincrement())
     language String // Enum
     value String
-    titlePostId Int?
-    titlePost Post? @relation(name: "TitleLocalization", fields: [titlePostId])
-    bodyPostId Int?
-    bodyPost Post? @relation(name: "BodyLocalization", fields: [bodyPostId])
+    model String
+    field String
 }
