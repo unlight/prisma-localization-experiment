@@ -82,3 +82,4 @@ model Localization {
 #### Pros/Cons
 
 -   [-] Single loop to attach localized fields
+-   [-] Less typings (like EAV field-value)
